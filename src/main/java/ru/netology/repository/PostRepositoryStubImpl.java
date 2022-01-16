@@ -13,11 +13,7 @@ public class PostRepositoryStubImpl implements PostRepository {
     private final Map<Long, Post> posts = new ConcurrentHashMap<>();
     private final AtomicLong count = new AtomicLong();
     public List<Post> all() {
-        List<Post> postList = new ArrayList<>();
-        for (Map.Entry<Long, Post> posts : posts.entrySet()) {
-            postList.add(posts.getValue());
-        }
-        return postList;
+        return  new ArrayList<>(posts.values());
     }
 
     public Optional<Post> getById(long id) {
