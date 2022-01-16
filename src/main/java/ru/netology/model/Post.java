@@ -1,8 +1,17 @@
 package ru.netology.model;
+import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 
-public class Post {
+
+public class Post implements Serializable {
+
+    @Expose
     private long id;
+
+    @Expose
     private String content;
+
+    private boolean removed;
 
     public Post() {
     }
@@ -26,5 +35,13 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean isRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(boolean removed) {
+        this.removed = removed;
     }
 }
