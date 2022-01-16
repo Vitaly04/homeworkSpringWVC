@@ -1,8 +1,16 @@
 package ru.netology.model;
+import com.google.gson.annotations.Expose;
+import java.io.Serializable;
 
-public class Post {
+
+public class Post implements Serializable {
+
+    @Expose
     private long id;
+
+    @Expose
     private String content;
+
     private boolean removed;
 
     public Post() {

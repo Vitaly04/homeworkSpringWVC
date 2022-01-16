@@ -1,6 +1,7 @@
 package ru.netology.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.netology.model.Post;
@@ -19,7 +20,9 @@ public class PostController {
 
     public PostController(PostService service) {
         this.service = service;
-        this.gson = new Gson();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.excludeFieldsWithoutExposeAnnotation();
+        this.gson = gsonBuilder.create();
     }
 
     @GetMapping
@@ -47,7 +50,7 @@ public class PostController {
     @DeleteMapping("/{id}")
     public void removeById(@PathVariable long id, HttpServletResponse response) throws IOException {
         // TODO: deserialize request & serialize response
-        service.removeById((Long)id);
+        service.removeById(id);
         response.getWriter().print("post id : " + id + " remove");
     }
 }
